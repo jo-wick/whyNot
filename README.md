@@ -19,3 +19,5 @@
 
 * 분실물 기능
 <img width="707" alt="Screen Shot 2021-07-14 at 3 39 56 PM" src="https://user-images.githubusercontent.com/74345861/125575134-7ed04c0b-6c85-4f84-90a5-761f20332652.png">
+
+## 실제로 구현된 화면
