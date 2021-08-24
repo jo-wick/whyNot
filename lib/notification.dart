@@ -99,4 +99,4 @@ class NoticeState extends State<Notice> {
       ),
     );
   }
-}
+}     // 공지 사항

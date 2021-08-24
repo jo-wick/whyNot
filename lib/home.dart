@@ -63,4 +63,4 @@ class _HomePage extends State<HomePage> {
       bottomNavigationBar: _bottomNavigationBarWidget(),
     );
   }
-}
+}     // 홈 화면

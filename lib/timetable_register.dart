@@ -87,4 +87,4 @@ class TimetableRegisterState extends State<TimetableRegister> {
       )
     );
   }
-}
+}   // 시간표 등록 화면

@@ -236,4 +236,4 @@ class SettingState extends State<Setting> {
       print(e.toString());
     }
   }
-}
+}     // 설정 화면(로그아웃 기능 구현)

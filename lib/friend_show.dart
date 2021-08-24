@@ -116,4 +116,4 @@ class FriendShowState extends State<FriendShow> {
       ],
     );
   }
-}
+}     // 친구 목록 화면

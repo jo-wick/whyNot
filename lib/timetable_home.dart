@@ -213,4 +213,4 @@ class TimetableHomeState extends State<TimetableHome> {
       ],
     );
   }
-}
+}   // 시간표 틀 구현 (DB 연결 필요)

@@ -151,4 +151,4 @@ class DeleteState extends State<Delete> {
       ],
     );
   }
-}
+}     // 친구 삭제 화면

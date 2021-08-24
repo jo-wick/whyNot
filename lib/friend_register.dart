@@ -116,4 +116,4 @@ class FriendRegisterState extends State<FriendRegister> {
       ],
     );
   }
-}
+}     // 친구 등록 화면

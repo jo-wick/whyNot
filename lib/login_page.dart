@@ -41,6 +41,7 @@ class LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+<<<<<<< Updated upstream
                   _idText(),
                   Container(height: 16.0),
                   Container(
@@ -83,6 +84,9 @@ class LoginPageState extends State<LoginPage> {
                   _googleSignInButton(),
                   Container(height: 20),
                   _loginButton(),
+=======
+                  _googleSignInButton(),
+>>>>>>> Stashed changes
                 ],
               ),
             ),
@@ -288,7 +292,7 @@ class LoginPageState extends State<LoginPage> {
       // );
     }
   }
-}
+}   // 로그인 위젯 (구글 로그인, 한동 이메일만 로그인하게 구현)
 
 class _RegisterEmailSection extends StatefulWidget {
   final String title = 'Registration';

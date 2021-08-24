@@ -292,4 +292,4 @@ class Timetable2State extends State<Timetable2> {
       ],
     );
   }
-}
+}     // 친구 선택 화면

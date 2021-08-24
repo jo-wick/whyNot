@@ -1,6 +1,17 @@
+// import 'dart:html';
+import 'dart:async';
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:vacation_project/lost_and_found.dart';
 import 'package:vacation_project/student_card_register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl/intl.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class Registerlostandfound extends StatefulWidget {
   const Registerlostandfound({Key key}) : super(key: key);
@@ -10,8 +21,12 @@ class Registerlostandfound extends StatefulWidget {
 }
 
 class _Registerlostandfound extends State<Registerlostandfound> {
+  final formattedDate = DateFormat('yyyy-MM-dd kk:mm:ss.ms').format(DateTime.now());
   String _character = '';
   final myController1 = TextEditingController();
+  final myController2 = TextEditingController();
+
+  var url = 'https://handong.edu/site/handong/res/img/logo.png';
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +34,7 @@ class _Registerlostandfound extends State<Registerlostandfound> {
     return MaterialApp(
       title: title,
       home: Scaffold(
+        resizeToAvoidBottomInset : false,
         appBar: AppBar(
           backgroundColor: Color(0xFF3A70AF),
           title: Text(title),
@@ -141,6 +157,7 @@ class _Registerlostandfound extends State<Registerlostandfound> {
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
             ),
             TextFormField(
+              controller: myController2,
               decoration: const InputDecoration(
                 icon: Icon(Icons.info),
                 hintText: 'ex) 헬스장 신발장 위에 놔두었습니다. ',
@@ -149,6 +166,15 @@ class _Registerlostandfound extends State<Registerlostandfound> {
                 border: OutlineInputBorder(),
                 labelText: '추가정보를 입력하세요.',
               ),
+            ),
+            ListTile(
+              title: Text("사진 추가",
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+            ),
+            FloatingActionButton(
+              onPressed: getImageFromGallery,
+              tooltip: 'Pick Image',
+              child: Icon(Icons.wallpaper),
             ),
             SizedBox(
               height: 20,
@@ -211,11 +237,47 @@ class _Registerlostandfound extends State<Registerlostandfound> {
           width: 80,
           height: 35,
           child: ElevatedButton(
-            onPressed: () => showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(content: Text("Successfully registered."));
-                }),
+            onPressed: () async {
+            var im_time = DateTime.now().microsecondsSinceEpoch;
+
+            String downloadURL;
+            String file1 = '';
+            if(_image != null){
+              File file = File(_image.path);
+              await firebase_storage.FirebaseStorage.instance
+                  .ref('uploads/${im_time}.jpg')
+                  .putFile(file);
+              downloadURL = await firebase_storage.FirebaseStorage.instance
+                  .ref('uploads/${im_time}.jpg')
+                  .getDownloadURL();
+              // downloadURL = downloadURLExample(im_time) as String;
+              // print(downloadURL);
+              // downloadURL = downloadURL.toString();
+              // print(downloadURL);
+              file1 = '1';
+            }
+            else{
+              firebase_storage.FirebaseStorage.instance
+                  .ref('uploads/${url}');
+              downloadURL = url;
+              file1 = '0';
+            }
+
+            FirebaseFirestore.instance.collection(_character).add({
+            'get_place': myController1.text,
+            'return_place': myController2.text,
+              'type': _character,
+            'downloadURL': downloadURL,
+            'timestamp': im_time,
+            'file': file1,
+            'time': formattedDate,
+            'uptime' : formattedDate,
+            'name': FirebaseAuth.instance.currentUser.displayName,
+            'userId': FirebaseAuth.instance.currentUser.uid,
+            });
+
+            Navigator.pop(context);
+            },
             child: Text(
               '등록',
               style: TextStyle(
@@ -235,4 +297,29 @@ class _Registerlostandfound extends State<Registerlostandfound> {
       ],
     );
   }
-}
+
+  PickedFile _image;
+  Future getImageFromGallery() async { // for gallery
+    var image = await ImagePicker.platform.pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 150,
+      maxHeight: 300,
+    );
+    setState(() {
+      _image = image;
+    });
+  }
+
+
+  Future<String> downloadURLExample(int imTime) async {
+    String downloadURL = await firebase_storage.FirebaseStorage.instance
+        .ref('uploads/${imTime}.jpg')
+        .getDownloadURL().toString();
+    print(downloadURL);
+
+    return downloadURL;
+
+    // Within your widgets:
+    // Image.network(downloadURL);
+  }
+}     // 분실물 등록 화면
