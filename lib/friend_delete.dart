@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:vacation_project/setting.dart';
 import 'package:vacation_project/timetable_home.dart';
 
+ThemeData _lightTheme = ThemeData(
+  brightness: Brightness.light,
+);
+
+ThemeData _darkTheme = ThemeData(
+  brightness: Brightness.dark,
+);
 class Delete extends StatefulWidget {
   @override
   DeleteState createState() => DeleteState();
@@ -18,59 +26,62 @@ class DeleteState extends State<Delete> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('친구 삭제'),
-        centerTitle: false,
-        backgroundColor: Color(0xFF3A70AF),
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(
-                context,
-                MaterialPageRoute(builder: (context) => TimetableHome()),
-              );
-            },
-            icon: Icon(Icons.arrow_back)),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            _text1(),
-            SizedBox(height: 10),
-            Column(
-                children: names.map((name) {
-              return CheckboxListTile(
-                  value: name["isChecked"],
-                  title: Text(name["name"]),
-                  onChanged: (newValue) {
-                    setState(() {
-                      name["isChecked"] = newValue;
+    return MaterialApp(
+      title: '아니 이거 왜 안돼',
+      theme: theme ? _darkTheme : _lightTheme,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('친구 삭제'),
+          centerTitle: false,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(
+                  context,
+                  MaterialPageRoute(builder: (context) => TimetableHome()),
+                );
+              },
+              icon: Icon(Icons.arrow_back)),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              _text1(),
+              SizedBox(height: 10),
+              Column(
+                  children: names.map((name) {
+                return CheckboxListTile(
+                    value: name["isChecked"],
+                    title: Text(name["name"]),
+                    onChanged: (newValue) {
+                      setState(() {
+                        name["isChecked"] = newValue;
+                      });
                     });
-                  });
-            }).toList()),
-            SizedBox(height: 10),
-            Divider(),
-            SizedBox(height: 10),
-            Wrap(
-              children: names.map((name) {
-                if (name["isChecked"] == true) {
-                  return Card(
-                    elevation: 3,
-                    color: Colors.grey,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(name["name"]),
-                    ),
-                  );
-                }
-                return Container();
-              }).toList(),
-            ),
-            Container(height: 20),
-            _checkButton(),
-          ]),
+              }).toList()),
+              SizedBox(height: 10),
+              Divider(),
+              SizedBox(height: 10),
+              Wrap(
+                children: names.map((name) {
+                  if (name["isChecked"] == true) {
+                    return Card(
+                      elevation: 3,
+                      color: Colors.grey,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(name["name"]),
+                      ),
+                    );
+                  }
+                  return Container();
+                }).toList(),
+              ),
+              Container(height: 20),
+              _checkButton(),
+            ]),
+          ),
         ),
       ),
     );

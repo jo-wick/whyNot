@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:vacation_project/register_LAF.dart';
+import 'package:vacation_project/setting.dart';
 import 'package:vacation_project/student_card_register.dart';
 
 import 'lost_and_found_board.dart';
 
+ThemeData _lightTheme = ThemeData(
+  brightness: Brightness.light,
+);
+
+ThemeData _darkTheme = ThemeData(
+  brightness: Brightness.dark,
+);
 class LostandFound extends StatefulWidget {
   @override
   LostandFoundState createState() => LostandFoundState();
@@ -15,6 +23,7 @@ class LostandFoundState extends State<LostandFound> {
     final title = '분실물';
     return MaterialApp(
       title: '아니 이거 왜 안돼',
+      theme: theme ? _darkTheme : _lightTheme,
       home: Scaffold(
         drawer: Drawer(
           child: ListView(
@@ -71,7 +80,6 @@ class LostandFoundState extends State<LostandFound> {
         appBar: AppBar(
           title: Text(title),
           centerTitle: true,
-          backgroundColor: Color(0xFF3A70AF),
         ),
         body: Column(
           children: <Widget>[

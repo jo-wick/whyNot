@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:vacation_project/setting.dart';
 import 'package:vacation_project/timetable.dart';
 
+ThemeData _lightTheme = ThemeData(
+  brightness: Brightness.light,
+);
+
+ThemeData _darkTheme = ThemeData(
+  brightness: Brightness.dark,
+);
 class TimetableCompare extends StatefulWidget {
   @override
   TimetableCompareState createState() => TimetableCompareState();
@@ -24,11 +32,11 @@ class TimetableCompareState extends State<TimetableCompare> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '아니 이거 왜 안돼',
+      theme: theme ? _darkTheme : _lightTheme,
       home: Scaffold(
           appBar: AppBar(
             title: Text('시간표 비교'),
             centerTitle: true,
-            backgroundColor: Color(0xFF3A70AF),
             leading: IconButton(
               alignment: Alignment.center,
               icon: Icon(Icons.arrow_back),

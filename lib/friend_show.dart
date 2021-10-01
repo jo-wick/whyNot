@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:vacation_project/friend_delete.dart';
+import 'package:vacation_project/setting.dart';
 import 'package:vacation_project/timetable_home.dart';
 
 import 'friend_register.dart';
 
+ThemeData _lightTheme = ThemeData(
+  brightness: Brightness.light,
+);
+
+ThemeData _darkTheme = ThemeData(
+  brightness: Brightness.dark,
+);
 class FriendShow extends StatefulWidget {
   @override
   FriendShowState createState() => FriendShowState();
@@ -12,47 +20,50 @@ class FriendShow extends StatefulWidget {
 class FriendShowState extends State<FriendShow> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('친구 목록'),
-          centerTitle: false,
-          backgroundColor: Color(0xFF3A70AF),
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(
-                  context,
-                  MaterialPageRoute(builder: (context) => TimetableHome()),
-                );
-              },
-              icon: Icon(Icons.arrow_back)),
-        ),
-        body: ListView(
-          children: [
-            Container(
-              height: 10.0,
-            ),
-            ListTile(
-              title: Text("윤지인"),
-            ),
-            ListTile(
-              title: Text("송다빈"),
-            ),
-            ListTile(
-              title: Text("백지훈"),
-            ),
-            ListTile(
-              title: Text("조형우"),
-            ),
-            ListTile(
-              title: Text("맹주찬"),
-            ),
-            ListTile(
-              title: Text("이오주"),
-            ),
-            Container(height: 10),
-            _checkButton1(),
-          ],
-        ));
+    return MaterialApp(
+      title: '아니 이거 왜 안돼',
+      theme: theme ? _darkTheme : _lightTheme,
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('친구 목록'),
+            centerTitle: false,
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(
+                    context,
+                    MaterialPageRoute(builder: (context) => TimetableHome()),
+                  );
+                },
+                icon: Icon(Icons.arrow_back)),
+          ),
+          body: ListView(
+            children: [
+              Container(
+                height: 10.0,
+              ),
+              ListTile(
+                title: Text("윤지인"),
+              ),
+              ListTile(
+                title: Text("송다빈"),
+              ),
+              ListTile(
+                title: Text("백지훈"),
+              ),
+              ListTile(
+                title: Text("조형우"),
+              ),
+              ListTile(
+                title: Text("맹주찬"),
+              ),
+              ListTile(
+                title: Text("이오주"),
+              ),
+              Container(height: 10),
+              _checkButton1(),
+            ],
+          )),
+    );
   }
 
   Widget _checkButton1() {

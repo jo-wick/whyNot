@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:vacation_project/setting.dart';
 import 'package:vacation_project/timetable_home.dart';
 
+ThemeData _lightTheme = ThemeData(
+  brightness: Brightness.light,
+);
+
+ThemeData _darkTheme = ThemeData(
+  brightness: Brightness.dark,
+);
 class FriendRegister extends StatefulWidget {
   @override
   FriendRegisterState createState() => FriendRegisterState();
@@ -11,49 +19,52 @@ class FriendRegisterState extends State<FriendRegister> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('친구 등록'),
-          centerTitle: false,
-          backgroundColor: Color(0xFF3A70AF),
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(
-                  context,
-                  MaterialPageRoute(builder: (context) => TimetableHome()),
-                );
-              },
-              icon: Icon(Icons.arrow_back)),
-        ),
-        body: ListView(
-          children: [
-            Container(
-              margin: EdgeInsets.only(left: 10.0, top: 10.0),
-              child: ListTile(
-                title: Text("등록할 친구의 인증코드를 입력하세요."),
+    return MaterialApp(
+      title: '아니 이거 왜 안돼',
+      theme: theme ? _darkTheme : _lightTheme,
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('친구 등록'),
+            centerTitle: false,
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(
+                    context,
+                    MaterialPageRoute(builder: (context) => TimetableHome()),
+                  );
+                },
+                icon: Icon(Icons.arrow_back)),
+          ),
+          body: ListView(
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 10.0, top: 10.0),
+                child: ListTile(
+                  title: Text("등록할 친구의 인증코드를 입력하세요."),
+                ),
               ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20.0, right: 20.0),
-              child: TextField(
-                controller: myController,
-                decoration: InputDecoration(
-                  hintText: "인증코드",
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color(0xFF3A70AF), width: 2.0),
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                child: TextField(
+                  controller: myController,
+                  decoration: InputDecoration(
+                    hintText: "인증코드",
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color(0xFF3A70AF), width: 2.0),
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(height: 30.0),
-            _checkButton(),
-          ],
-        ));
+              Container(height: 30.0),
+              _checkButton(),
+            ],
+          )),
+    );
   }
 
   Widget _checkButton() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vacation_project/lost_and_found.dart';
+import 'package:vacation_project/setting.dart';
 import 'package:vacation_project/student_card_register.dart';
 
 class Registerlostandfound extends StatefulWidget {
@@ -9,6 +10,13 @@ class Registerlostandfound extends StatefulWidget {
   State<Registerlostandfound> createState() => _Registerlostandfound();
 }
 
+ThemeData _lightTheme = ThemeData(
+  brightness: Brightness.light,
+);
+
+ThemeData _darkTheme = ThemeData(
+  brightness: Brightness.dark,
+);
 class _Registerlostandfound extends State<Registerlostandfound> {
   String _character = '';
   final myController1 = TextEditingController();
@@ -18,9 +26,9 @@ class _Registerlostandfound extends State<Registerlostandfound> {
     final title = '습득물 등록';
     return MaterialApp(
       title: title,
+      theme: theme ? _darkTheme : _lightTheme,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFF3A70AF),
           title: Text(title),
           leading: IconButton(
               onPressed: () {

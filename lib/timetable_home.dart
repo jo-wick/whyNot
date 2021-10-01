@@ -6,6 +6,13 @@ import 'friend_register.dart';
 import 'friend_show.dart';
 import 'timetable_register.dart';
 
+ThemeData _lightTheme = ThemeData(
+  brightness: Brightness.light,
+);
+
+ThemeData _darkTheme = ThemeData(
+  brightness: Brightness.dark,
+);
 class TimetableHome extends StatefulWidget {
   @override
   TimetableHomeState createState() => TimetableHomeState();
@@ -44,6 +51,7 @@ class TimetableHomeState extends State<TimetableHome> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '아니 이거 왜 안돼',
+      theme: theme ? _darkTheme : _lightTheme,
       home: Scaffold(
           drawer: Drawer(
             child: ListView(
@@ -122,7 +130,6 @@ class TimetableHomeState extends State<TimetableHome> {
           appBar: AppBar(
             title: Text('홈'),
             centerTitle: true,
-            backgroundColor: Color(0xFF3A70AF),
           ),
           body: Container(
               width: MediaQuery.of(context).size.width,
@@ -158,37 +165,31 @@ class TimetableHomeState extends State<TimetableHome> {
                                                           i == "목" ||
                                                           i == "금")
                                                       ? Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  border: Border
-                                                                      .all(
-                                                                    color: Colors
-                                                                        .black,
-                                                                  )),
-                                                          alignment:
-                                                              Alignment.center,
-                                                          child: Text(
-                                                              i.toString(),
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                              )))
+                                                      decoration:
+                                                      BoxDecoration(
+                                                          border: Border
+                                                              .all(
+                                                            color: Colors.black,
+                                                          )),
+                                                      alignment:
+                                                      Alignment.center,
+                                                      child: Text(
+                                                        i.toString(),
+                                                      ))
                                                       : Container(
-                                                          decoration: BoxDecoration(
+                                                      decoration: BoxDecoration(
+                                                          color: Colors
+                                                              .blue[200],
+                                                          border: Border.all(
                                                               color: Colors
-                                                                  .blue[200],
-                                                              border: Border.all(
-                                                                  color: Colors
-                                                                      .black)),
-                                                          alignment:
-                                                              Alignment.center,
-                                                          child: Text(
-                                                              i.toString(),
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .black))),
+                                                                  .black)),
+                                                      alignment:
+                                                      Alignment.center,
+                                                      child: Text(
+                                                          i.toString(),
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .black))),
                                                 ))
                                             .toList()),
                                   ))

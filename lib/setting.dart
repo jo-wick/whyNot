@@ -12,6 +12,14 @@ class Setting extends StatefulWidget {
   SettingState createState() => SettingState();
 }
 
+ThemeData _lightTheme = ThemeData(
+  brightness: Brightness.light,
+);
+
+ThemeData _darkTheme = ThemeData(
+  brightness: Brightness.dark,
+);
+bool theme = false;
 class SettingState extends State<Setting> {
   bool isSwitched1 = false;
   bool isSwitched2 = false;
@@ -21,11 +29,11 @@ class SettingState extends State<Setting> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '아니 이거 왜 안돼',
+      theme: theme ? _darkTheme : _lightTheme,
       home: Scaffold(
         appBar: AppBar(
           title: Text('설정'),
           centerTitle: true,
-          backgroundColor: Color(0xFF3A70AF),
         ),
         body: Builder(builder: (BuildContext context) {
           return Center(
@@ -43,7 +51,6 @@ class SettingState extends State<Setting> {
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black, width: 1),
                       borderRadius: BorderRadius.circular(5.0),
-                      color: Color(0xFFE5E5E5),
                     ),
                     child: _text11(),
                   ),
@@ -54,7 +61,6 @@ class SettingState extends State<Setting> {
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black, width: 1),
                       borderRadius: BorderRadius.circular(5.0),
-                      color: Color(0xFFE5E5E5),
                     ),
                     child: _text21(),
                   ),
@@ -67,7 +73,6 @@ class SettingState extends State<Setting> {
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black, width: 1),
                       borderRadius: BorderRadius.circular(5.0),
-                      color: Color(0xFFE5E5E5),
                     ),
                     child: _text31(),
                   ),
@@ -190,11 +195,10 @@ class SettingState extends State<Setting> {
         ),
         Container(width: 215.0),
         Switch(
-          value: isSwitched2,
-          onChanged: (value) {
+          value: theme,
+          onChanged: (state) {
             setState(() {
-              isSwitched2 = value;
-              print(isSwitched2);
+              theme = state;
             });
           },
           activeTrackColor: Color(0xFF3A70AF),

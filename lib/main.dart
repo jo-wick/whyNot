@@ -28,10 +28,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: '아니 이거 왜 안돼',
-      theme: new ThemeData(
-        backgroundColor: Color(0xFF3A70AF),
-      ),
-      darkTheme: ThemeData.dark(),
+      theme: ThemeData(brightness: Brightness.light),
+      darkTheme: ThemeData(brightness: Brightness.dark),
       home: new LoginPage(),
     );
   }

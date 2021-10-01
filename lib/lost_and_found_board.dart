@@ -5,11 +5,20 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:vacation_project/lost_and_found.dart';
+import 'package:vacation_project/setting.dart';
 import 'package:vacation_project/student_card_register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+
+ThemeData _lightTheme = ThemeData(
+  brightness: Brightness.light,
+);
+
+ThemeData _darkTheme = ThemeData(
+  brightness: Brightness.dark,
+);
 
 
 class Lost_found_board_Page extends StatefulWidget {
@@ -32,9 +41,9 @@ class _Lost_found_board_Page extends State<Lost_found_board_Page>{
     final title = types + ' 습득물';
     return MaterialApp(
       title: title,
+      theme: theme ? _darkTheme : _lightTheme,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFF3A70AF),
           title: Text(title),
           leading: IconButton(
               onPressed: () {
@@ -141,9 +150,9 @@ class _Lost_found_stcard_board_Page extends State<Lost_found_stcard_board_Page>{
     final title = types + ' 습득물';
     return MaterialApp(
       title: title,
+      theme: theme ? _darkTheme : _lightTheme,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFF3A70AF),
           title: Text(title),
           leading: IconButton(
               onPressed: () {
@@ -249,7 +258,6 @@ class _Lost_found_detail_Page  extends State<Lost_found_detail_Page>{
       title: title,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFF3A70AF),
           title: Text(title),
           leading: IconButton(
               onPressed: () {
@@ -332,7 +340,6 @@ class _Lost_found_stcard_detail_Page  extends State<Lost_found_stcard_detail_Pag
         title: title,
         home: Scaffold(
             appBar: AppBar(
-              backgroundColor: Color(0xFF3A70AF),
               title: Text(title),
               leading: IconButton(
                   onPressed: () {

@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:vacation_project/register_LAF.dart';
+import 'package:vacation_project/setting.dart';
 
+ThemeData _lightTheme = ThemeData(
+  brightness: Brightness.light,
+);
+
+ThemeData _darkTheme = ThemeData(
+  brightness: Brightness.dark,
+);
 class RegisterSTcard extends StatefulWidget {
   const RegisterSTcard({Key key}) : super(key: key);
 
@@ -14,6 +22,7 @@ class _RegisterSTcard extends State<RegisterSTcard> {
     final title = '학생증 습득 등록';
     return MaterialApp(
       title: title,
+      theme: theme ? _darkTheme : _lightTheme,
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -26,7 +35,6 @@ class _RegisterSTcard extends State<RegisterSTcard> {
               },
               icon: Icon(Icons.arrow_back)),
           title: Text(title),
-          backgroundColor: Color(0xFF3A70AF),
         ),
         body: Column(
           children: <Widget>[

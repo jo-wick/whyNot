@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:intl/intl.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:vacation_project/setting.dart';
 
 import 'home.dart';
 
@@ -12,6 +13,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
+ThemeData _lightTheme = ThemeData(
+  brightness: Brightness.light,
+);
+
+ThemeData _darkTheme = ThemeData(
+  brightness: Brightness.dark,
+);
 class LoginPage extends StatefulWidget {
   @override
   LoginPageState createState() => LoginPageState();
@@ -62,12 +70,12 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '아니 이거 왜 안돼',
+      theme: theme ? _darkTheme : _lightTheme,
       home: Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
           title: Text('로그인'),
           centerTitle: true,
-          backgroundColor: Color(0xFF3A70AF),
         ),
         body: Builder(builder: (BuildContext context) {
           return
@@ -367,7 +375,6 @@ class _RegisterEmailSectionState extends State<_RegisterEmailSection> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Sign Up"),
-          backgroundColor: Color(0xFF3A70AF),
         ),
         body: Builder(builder: (BuildContext context) {
           return ListView(
