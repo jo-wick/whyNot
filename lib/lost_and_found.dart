@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vacation_project/register_LAF.dart';
 import 'package:vacation_project/student_card_register.dart';
 
+import 'lost_and_found_board.dart';
+
 class LostandFound extends StatefulWidget {
   @override
   LostandFoundState createState() => LostandFoundState();
@@ -88,7 +90,14 @@ class LostandFoundState extends State<LostandFound> {
                       width: 259,
                     ),
                     IconButton(
-                        onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
+                        onPressed: () {
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Lost_found_stcard_board_Page(types: '학생증')),
+                          );
+                        }, icon: Icon(Icons.arrow_forward_ios)),
                   ],
                 ),
               ),
@@ -104,7 +113,14 @@ class LostandFoundState extends State<LostandFound> {
                         width: 273,
                       ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Lost_found_board_Page(types: '카드')),
+                            );
+                          },
                           icon: Icon(Icons.arrow_forward_ios)),
                     ],
                   )),
@@ -120,7 +136,14 @@ class LostandFoundState extends State<LostandFound> {
                       width: 273,
                     ),
                     IconButton(
-                        onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
+                        onPressed: () {
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Lost_found_board_Page(types: '지갑')),
+                          );
+                        }, icon: Icon(Icons.arrow_forward_ios)),
                   ],
                 ),
               ),
@@ -136,7 +159,14 @@ class LostandFoundState extends State<LostandFound> {
                       width: 243,
                     ),
                     IconButton(
-                        onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
+                        onPressed: () {
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Lost_found_board_Page(types: '전자기기')),
+                          );
+                        }, icon: Icon(Icons.arrow_forward_ios)),
                   ],
                 ),
               ),
@@ -152,7 +182,14 @@ class LostandFoundState extends State<LostandFound> {
                       width: 273,
                     ),
                     IconButton(
-                        onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
+                        onPressed: () {
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Lost_found_board_Page(types: '가방')),
+                          );
+                        }, icon: Icon(Icons.arrow_forward_ios)),
                   ],
                 ),
               ),
@@ -168,7 +205,14 @@ class LostandFoundState extends State<LostandFound> {
                       width: 273,
                     ),
                     IconButton(
-                        onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
+                        onPressed: () {
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Lost_found_board_Page(types: '기타')),
+                          );
+                        }, icon: Icon(Icons.arrow_forward_ios)),
                   ],
                 ),
               ),
@@ -178,4 +222,4 @@ class LostandFoundState extends State<LostandFound> {
       ),
     );
   }
-}
+}     // 분실물 종류 선택 화면
